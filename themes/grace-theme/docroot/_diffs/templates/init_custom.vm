@@ -1,3 +1,9 @@
 #*
 This file allows you to override and define new Velocity variables.
 *#
+
+#set ($site_logo = "${images_folder}/custom/grace-logo.png")
+#set ($site_logo_height = "100px")
+#set ($site_logo_width = "100px")
+
+#set ($site_name = "Grace Evangelical Free Church")

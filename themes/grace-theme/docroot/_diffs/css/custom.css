@@ -2,14 +2,139 @@
 
 /* ---- Global ---- */
 
+body, #wrapper {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-image: -webkit-linear-gradient(#F6F6F6, #DDD);
+}
+
+#wrapper {
+	background: transparent url(../images/custom/pre-footer-background.png) bottom left repeat-x scroll;
+	border-top: 3px solid #97B53E;
+	width: 100%;
+}
+
+#banner, #content, #footer {
+	width: 100%;
+}
+
+#innerBanner, #innerContent, #innerFooter {
+	margin: 0 auto;
+	width: 960px;
+}
+
+#navigation h1, #breadcrumbs h1 {
+	display: none;
+}
+
 /* ---- Header ---- */
 
+.site-title {
+	display: block;
+	text-align: center;
+}
+
 /* ---- Navigation ---- */
+
+#navigation {
+	display: table;
+	width: 100%;
+	z-index: 500
+}
+
+#navigation > ul {
+	clear: both;
+	display: table-row;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	z-index: 505;
+
+	a {
+		color: #000;
+		//height: 100%;
+		text-decoration: none;
+		//width: 100%;
+	}
+
+	li {
+		display: table-cell;
+		height: 50px;
+		position: relative;
+		text-align: center;
+		text-transform: uppercase;
+		vertical-align: middle;
+		width: 20%;
+
+		&:hover, &:focus {
+			.child-menu {
+				display: block;
+			}
+		}
+	}
+
+	.child-menu {
+		background: #FFF;
+		border: 2px solid #000;
+		display: none;
+		position: absolute;
+		width: auto;
+		z-index: 1000;
+
+		li {
+			display: block;
+			height: auto;
+			padding: 5px 10px;
+			text-align: left;
+			width: auto;
+		}
+	}
+}
 
 /* ---- Content Navigation ---- */
 
 /* ---- Main Content ---- */
 
+#content {
+	z-index: 250;
+}
+
+.portlet-layout {
+	border: 15px solid #FFF;
+	border-width: 15px 15px 0;
+
+	&:nth-of-type(2) {
+		box-shadow: 0 10px 8px -8px rgba(0,0,0,0.7);
+	}
+
+	&:nth-of-type(3) {
+		border-color: transparent;
+	}
+}
+
+.portlet-column:not(#column-5) {
+	background: #FFF;
+
+	.portlet-column-content {
+		padding: 5px;
+	}
+
+	.journal-content-article img {
+		display: block;
+		margin: 0 auto;
+		width: 100%;
+	}
+}
+
 /* ---- Footer ---- */
+
+#footer {
+	background: rgba(240, 250, 130, 0.5);
+	padding: 15px 0;
+}
 
 /* ---- Extras ---- */
