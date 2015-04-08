@@ -34,6 +34,7 @@ import com.liferay.portal.workflow.kaleo.definition.DelayDuration;
 import com.liferay.portal.workflow.kaleo.definition.DurationScale;
 import com.liferay.portal.workflow.kaleo.definition.Node;
 import com.liferay.portal.workflow.kaleo.definition.Notification;
+import com.liferay.portal.workflow.kaleo.definition.NotificationReceptionType;
 import com.liferay.portal.workflow.kaleo.definition.Recipient;
 import com.liferay.portal.workflow.kaleo.definition.RecipientType;
 import com.liferay.portal.workflow.kaleo.definition.ResourceActionAssignment;
@@ -140,8 +141,9 @@ public abstract class BaseNodeBuilder
 				}
 			}
 
-			recipient.setEmailRecipientType(
-				kaleoNotificationRecipient.getEmailRecipientType());
+			recipient.setNotificationReceptionType(
+				NotificationReceptionType.parse(
+					kaleoNotificationRecipient.getReceiptionType()));
 
 			notification.addRecipients(recipient);
 		}
@@ -283,10 +285,9 @@ public abstract class BaseNodeBuilder
 			String recurrenceScale = kaleoTimer.getRecurrenceScale();
 
 			if (Validator.isNotNull(recurrenceScale)) {
-				DelayDuration recurrenceDelayDuration =
-					new DelayDuration(
-						kaleoTimer.getRecurrenceDuration(),
-						DurationScale.parse(recurrenceScale));
+				DelayDuration recurrenceDelayDuration = new DelayDuration(
+					kaleoTimer.getRecurrenceDuration(),
+					DurationScale.parse(recurrenceScale));
 
 				timer.setRecurrence(recurrenceDelayDuration);
 			}
