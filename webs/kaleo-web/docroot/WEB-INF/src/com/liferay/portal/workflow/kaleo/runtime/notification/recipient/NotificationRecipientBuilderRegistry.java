@@ -12,13 +12,16 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.definition;
+package com.liferay.portal.workflow.kaleo.runtime.notification.recipient;
+
+import com.liferay.portal.workflow.kaleo.definition.RecipientType;
 
 /**
  * @author Michael C. Han
  */
-public enum RecipientType {
+public interface NotificationRecipientBuilderRegistry {
 
-	ADDRESS, ASSIGNEES, ROLE, SCRIPT, USER
+	public NotificationRecipientBuilder
+		getKaleoNotificationRecipientHandler(RecipientType recipientType);
 
 }

@@ -12,13 +12,15 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.definition;
+package com.liferay.portal.workflow.kaleo.runtime.notification.recipient.script;
 
 /**
  * @author Michael C. Han
  */
-public enum RecipientType {
+public interface ScriptingNotificationRecipientConstants {
 
-	ADDRESS, ASSIGNEES, ROLE, SCRIPT, USER
+	public static final String ROLES_RECIPIENT = "roles";
+
+	public static final String USER_RECIPIENT = "user";
 
 }

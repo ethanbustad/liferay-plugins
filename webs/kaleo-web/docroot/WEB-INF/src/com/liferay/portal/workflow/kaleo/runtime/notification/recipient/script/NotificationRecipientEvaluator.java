@@ -12,13 +12,22 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.definition;
+package com.liferay.portal.workflow.kaleo.runtime.notification.recipient.script;
+
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
+import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
+
+import java.util.Map;
 
 /**
  * @author Michael C. Han
  */
-public enum RecipientType {
+public interface NotificationRecipientEvaluator {
 
-	ADDRESS, ASSIGNEES, ROLE, SCRIPT, USER
+	public Map<String, ?> evaluate(
+			KaleoNotificationRecipient kaleoNotificationRecipient,
+			ExecutionContext executionContext)
+		throws PortalException;
 
 }

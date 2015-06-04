@@ -34,12 +34,14 @@ import com.liferay.portal.workflow.kaleo.definition.DelayDuration;
 import com.liferay.portal.workflow.kaleo.definition.DurationScale;
 import com.liferay.portal.workflow.kaleo.definition.Node;
 import com.liferay.portal.workflow.kaleo.definition.Notification;
+import com.liferay.portal.workflow.kaleo.definition.NotificationReceptionType;
 import com.liferay.portal.workflow.kaleo.definition.Recipient;
 import com.liferay.portal.workflow.kaleo.definition.RecipientType;
 import com.liferay.portal.workflow.kaleo.definition.ResourceActionAssignment;
 import com.liferay.portal.workflow.kaleo.definition.RoleAssignment;
 import com.liferay.portal.workflow.kaleo.definition.RoleRecipient;
 import com.liferay.portal.workflow.kaleo.definition.ScriptAssignment;
+import com.liferay.portal.workflow.kaleo.definition.ScriptRecipient;
 import com.liferay.portal.workflow.kaleo.definition.Timer;
 import com.liferay.portal.workflow.kaleo.definition.UserAssignment;
 import com.liferay.portal.workflow.kaleo.definition.UserRecipient;
@@ -119,6 +121,13 @@ public abstract class BaseNodeBuilder
 				recipient = new RoleRecipient(
 					role.getName(), role.getTypeLabel());
 			}
+			else if (recipientClassName.equals(RecipientType.SCRIPT.name())) {
+				recipient = new ScriptRecipient(
+					kaleoNotificationRecipient.getRecipientScript(),
+					kaleoNotificationRecipient.getRecipientScriptLanguage(),
+					kaleoNotificationRecipient.
+						getRecipientScriptRequiredContexts());
+			}
 			else if (recipientClassName.equals(User.class.getName())) {
 				if (recipientClassPK > 0) {
 					User user = _userLocalService.getUser(recipientClassPK);
@@ -131,6 +140,10 @@ public abstract class BaseNodeBuilder
 					recipient = new UserRecipient();
 				}
 			}
+
+			recipient.setNotificationReceptionType(
+				NotificationReceptionType.parse(
+					kaleoNotificationRecipient.getNotificationReceptionType()));
 
 			notification.addRecipients(recipient);
 		}
