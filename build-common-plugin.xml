@@ -287,19 +287,10 @@
 
 					<delete dir="classes/tomcat" quiet="true" />
 
-					<if>
-						<available file="@{compile.jsp.docroot.dir}/WEB-INF/liferay-hook.xml" />
-						<then>
-							<xmlproperty file="@{compile.jsp.docroot.dir}/WEB-INF/liferay-hook.xml" prefix="liferay" />
-
-							<property name="custom.portal.jsps" value="${liferay.hook.custom-jsp-dir}/**/*" />
-						</then>
-					</if>
-
 					<fileset dir="@{compile.jsp.docroot.dir}" id="compile.jsp.files">
 						<include name="**/*.jsp" />
 						<include name="**/*.jspx" />
-						<exclude name="${custom.portal.jsps}" />
+						<exclude name="**/custom_jsps/**/*" />
 					</fileset>
 
 					<pathconvert pathsep=" " property="compile.jsp.files" refid="compile.jsp.files">
